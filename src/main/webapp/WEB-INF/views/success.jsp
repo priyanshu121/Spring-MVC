@@ -9,9 +9,13 @@
 </head>
 <body>
 
-<h1> Welcome, ${name }</h1>
-<h1> Your email address is ${email }</h1>
-<h1> Your password is ${pass }, Please try to secure the password</h1>
+<h1> ${Header }</h1>
+<p>${Desc }</p>
+<hr>
+
+<h1> Welcome, ${user.name }</h1>
+<h1> Your email address is ${user.email }</h1>
+<h1> Your password is ${user.pass }, Please try to secure the password</h1>
 
 
 </body>
