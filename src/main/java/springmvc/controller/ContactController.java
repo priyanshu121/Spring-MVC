@@ -1,5 +1,6 @@
 package springmvc.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,6 +13,9 @@ import springmvc.model.User;
 
 @Controller
 public class ContactController {
+	
+	@Autowired
+	private springmvc.service.UserService userService;
 	
 	@ModelAttribute
 	public void commonDataForModel(Model m) {
@@ -30,10 +34,17 @@ public class ContactController {
 	public String handleForm(@ModelAttribute User user, Model model) {
 		System.out.println(user);
 		
+		if(user.getName().isBlank()) {
+			return "redirect:/contact";
+		}
+		
 //		model.addAttribute("Header", "Learn code with Priyanshu");
 //		model.addAttribute("Desc", "Home for programmer");
 		
 		//model.addAttribute("user", user);
+		this.userService.createUser(user);
+		int createdUser=this.userService.createUser(user);
+		model.addAttribute("msg", "User created with id "+createdUser);
 		return "success";
 		
 	
